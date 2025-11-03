@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bibliophile - Your Online Bookstore</title>
+  <meta name="description" content="Discover your next favorite book at Bibliophile. Browse our extensive collection of books across all genres.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container">
+      <div class="nav-wrapper">
+        <!-- Logo -->
+        <div class="logo">
+          <h1 class="logo-text">Bibliophile</h1>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Search books by title or author..." class="search-input" aria-label="Search books">
+          <div class="search-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Cart -->
+        <div class="cart-container">
+          <button id="cartButton" class="cart-button" aria-label="Shopping cart">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+            <span id="cartCount" class="cart-count">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="container">
+      <!-- Page Title -->
+      <div class="page-header">
+        <h1 class="page-title">Discover Your Next Great Read</h1>
+        <p class="page-subtitle">Browse our curated collection of books across all genres</p>
+      </div>
+
+      <!-- Filter Controls -->
+      <section class="filters">
+        <div class="filter-group">
+          <label for="categoryFilter" class="filter-label">Category</label>
+          <!-- Categories are populated dynamically from ../api/categories -->
+          <select id="categoryFilter" class="filter-select">
+            <option value="">All Categories</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="priceFilter" class="filter-label">Price Range</label>
+          <select id="priceFilter" class="filter-select">
+            <option value="">All Prices</option>
+            <option value="0-20">$0 - $20</option>
+            <option value="20-30">$20 - $30</option>
+            <option value="30-50">$30 - $50</option>
+            <option value="50-100">$50+</option>
+          </select>
+        </div>
+
+        <button id="clearFilters" class="clear-filters-btn">Clear Filters</button>
+      </section>
+
+      <!-- Books Grid -->
+      <section class="books-section">
+        <div id="booksGrid" class="books-grid">
+          <!-- Books will be dynamically loaded here -->
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="no-results" style="display: none;">
+          <h3>No books found</h3>
+          <p>Try adjusting your search or filter criteria</p>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-state">
+          <div class="loading-spinner"></div>
+          <p>Loading books...</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Bibliophile</h3>
+          <p>Your trusted online bookstore for discovering amazing reads.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="#" onclick="filterByCategory('Fiction')">Fiction</a></li>
+            <li><a href="#" onclick="filterByCategory('Technology')">Technology</a></li>
+            <li><a href="#" onclick="filterByCategory('Self-Help')">Self-Help</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Bibliophile. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+
+</html>

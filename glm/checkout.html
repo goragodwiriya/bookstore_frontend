@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - BookStore</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Kanit:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <i class="fas fa-book-open"></i>
+          <span>BookStore</span>
+        </div>
+        <div class="nav-menu">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="cart.html" class="nav-link">Cart</a>
+          <a href="checkout.html" class="nav-link active">Checkout</a>
+        </div>
+        <div class="nav-actions">
+          <a href="cart.html" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Checkout Content -->
+  <main class="checkout-page">
+    <div class="container">
+      <h1 class="page-title">Checkout</h1>
+
+      <div class="checkout-container">
+        <div class="checkout-form">
+          <form id="checkoutForm">
+            <!-- Shipping Information -->
+            <div class="form-section">
+              <h2><i class="fas fa-truck"></i> Shipping Information</h2>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input type="text" id="firstName" required>
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" id="lastName" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" required>
+              </div>
+              <div class="form-group">
+                <label for="address">Street Address</label>
+                <input type="text" id="address" required>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="city">City</label>
+                  <input type="text" id="city" required>
+                </div>
+                <div class="form-group">
+                  <label for="zipCode">ZIP Code</label>
+                  <input type="text" id="zipCode" required>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="form-section">
+              <h2><i class="fas fa-credit-card"></i> Payment Method</h2>
+              <div class="payment-methods">
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="card" checked>
+                  <span class="payment-label">
+                    <i class="fas fa-credit-card"></i> Credit/Debit Card
+                  </span>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="qr">
+                  <span class="payment-label">
+                    <i class="fas fa-qrcode"></i> QR Code Payment
+                  </span>
+                </label>
+              </div>
+
+              <!-- Card Payment Form -->
+              <div id="cardPayment" class="payment-form">
+                <div class="form-group">
+                  <label for="cardNumber">Card Number</label>
+                  <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="expiry">Expiry Date</label>
+                    <input type="text" id="expiry" placeholder="MM/YY" maxlength="5">
+                  </div>
+                  <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" placeholder="123" maxlength="3">
+                  </div>
+                </div>
+              </div>
+
+              <!-- QR Payment Form -->
+              <div id="qrPayment" class="payment-form" style="display: none;">
+                <div class="qr-container">
+                  <img src="https://promptpay.io/0868142004/0.png" alt="QR Code" class="qr-code" id="qrCode">
+                  <p>Scan the QR code with your mobile app to complete payment</p>
+                  <p class="qr-amount">Amount: <span id="qrAmount">$0.00</span></p>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="place-order-btn">
+              Place Order <i class="fas fa-lock"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+          <h2>Order Summary</h2>
+          <div id="orderItems">
+            <!-- Order items will be loaded here -->
+          </div>
+          <div class="summary-item">
+            <span>Subtotal:</span>
+            <span id="subtotal">$0.00</span>
+          </div>
+          <div class="summary-item">
+            <span>Shipping:</span>
+            <span id="shipping">$5.00</span>
+          </div>
+          <div class="summary-item">
+            <span>Tax (10%):</span>
+            <span id="tax">$0.00</span>
+          </div>
+          <div class="summary-item total">
+            <span>Total:</span>
+            <span id="total">$0.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h2>Order Placed Successfully!</h2>
+      <p>Thank you for your purchase. Your order has been confirmed.</p>
+      <p>Order ID: <strong id="orderId"></strong></p>
+      <button class="modal-btn" onclick="closeModal()">Continue Shopping</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>BookStore</h3>
+          <p>Your trusted source for quality books since 2024</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <p><i class="fas fa-envelope"></i> info@bookstore.com</p>
+          <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 BookStore. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMessage">Order placed successfully!</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
